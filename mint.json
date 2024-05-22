@@ -1,91 +1,103 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Momentic",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://momentic.ai"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
+    "primary": "#2971c7",
+    "light": "#2971c7",
+    "dark": "#2971c7"
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Book a demo",
+      "url": "https://momentic.ai/schedule-demo"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Log in",
+    "url": "https://app.momentic.ai"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Step types",
+      "url": "step-types"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "discord",
+      "url": "https://momentic.ai/chat"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://momentic.ai/blog"
+    },
+    {
+      "name": "Changelog",
+      "icon": "list-timeline",
+      "url": "https://momentic.ai/changelog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
+      "pages": ["introduction", "quickstart"]
     },
     {
       "group": "Essentials",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "essentials/preparing-a-test-environment",
+        "essentials/getting-an-api-key",
+        "essentials/authenticating",
+        "essentials/locating-elements",
+        "essentials/crafting-assertions",
+        "essentials/executing-javascript",
+        "essentials/test-context",
+        "essentials/smart-waiting"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "CLI",
       "pages": [
-        "api-reference/introduction"
+        "cli/installation",
+        "cli/starting-the-app",
+        "cli/running-tests",
+        "cli/syncing-tests",
+        "cli/syncing-environments"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "CI recipes",
+      "pages": ["ci-recipes/circleci", "ci-recipes/github-actions"]
+    },
+    {
+      "group": "Step types",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "step-types/ai-action",
+        "step-types/ai-check",
+        "step-types/ai-extract",
+        "step-types/ai-wait",
+        "step-types/captcha",
+        "step-types/click",
+        "step-types/cookie",
+        "step-types/drag-and-drop",
+        "step-types/javascript",
+        "step-types/select",
+        "step-types/visual-diff",
+        "step-types/file-upload"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "linkedin": "https://www.linkedin.com/company/momentic-ai",
+    "discord": "https://momentic.ai/discord",
+    "x": "https://twitter.com/MomenticAI"
   }
 }
