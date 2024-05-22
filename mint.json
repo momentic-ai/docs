@@ -99,5 +99,10 @@
     "linkedin": "https://www.linkedin.com/company/momentic-ai",
     "discord": "https://momentic.ai/discord",
     "x": "https://twitter.com/MomenticAI"
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
   }
 }
