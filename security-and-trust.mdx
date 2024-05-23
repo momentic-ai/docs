@@ -1,0 +1,76 @@
+---
+title: Security and trust
+description: The steps we take to ensure the security and trust of our users.
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="Does Momentic store or see my login credentials?">
+    No. Momentic never stores nor sees your login credentials. You sign in
+    directly with our authentication provider which provides connections to
+    Google, Microsoft, and GitHub.
+  </Accordion>
+  <Accordion title="Who is your cloud service provider and what region are your instances located in?">
+    Momentic is hosted on Google Cloud Platform. Our instances are located in
+    the 'us' (United States) region.
+  </Accordion>
+  <Accordion title="Can Momentic permanently delete my data?">
+    None of your data is edited or deleted without your interaction.
+  </Accordion>
+  <Accordion title="How does Momentic handle secrets like passwords in tests?">
+    Momentic has a permissions model following the principle of least privilege.
+    Users can be an admin, editor, or viewer. Only admins and editors have
+    access to view and edit secrets. Secrets are encrypted and never leave our
+    platform.
+  </Accordion>
+  <Accordion title="What is data passed to AI providers?">
+    Momentic uses OpenAI and Anthropic as our AI providers. During step
+    execution, we send the current browser state and the step content to LLMs
+    for analysis. We audit all data passed over the wire to ensure no sensitive
+    data ever leaves the Momentic platform.
+  </Accordion>
+  <Accordion title="Does Momentic access my source code?">
+    Momentic does not need access to your source code. It uses a browser to
+    interact with your application like an end user. The only pieces of data
+    that are passed to Momentic’s infrastructure are screenshots and a processed
+    version of the accessibility tree.
+  </Accordion>
+</AccordionGroup>
+
+## Enterprise
+
+<AccordionGroup>
+  <Accordion title="Do you provide SSO/SAML or other enterprise authentication controls? ">
+    Please contact support@momentic.ai if you’d like Single Sign-On via Security
+    Assertion Markup Language (SAML) or other authentication controls for your
+    organization.
+  </Accordion>
+  <Accordion title="Who are your data sub-processors?">
+    We work with companies and tools to store, analyze, and transmit data on behalf of our users. These companies have been vetted for best-in-class security practices.
+
+    | Sub-Processor | Purpose               |
+    |---------------|-----------------------|
+    | PostHog       | Analytics             |
+    | Google        | Cloud Hosting         |
+    | Superhuman    | Customer Communication|
+    | Discord       | Internal Processes    |
+    | Notion        | Internal Processes    |
+    | Slack         | Internal Processes    |
+    | GitHub        | Issue Tracking        |
+    | Linear        | Issue Tracking        |
+    | Stripe        | Payments              |
+    | Anthropic     | AI                    |
+    | OpenAI        | AI                    |
+
+  </Accordion>
+  <Accordion title="Is Momentic SOC 2 certified?">
+    Momentic is currently working to complete a SOC 2 certification.
+  </Accordion>
+  <Accordion title="Does Momentic regularly do external security audits?">
+    We follow security best practices and have planned to have them audited externally as part of the SOC 2 certification.
+  </Accordion>
+  <Accordion title="How can security vulnerabilities be reported and how are you handling incidents?">
+    We have systems and processes in place to review security issues. Incoming reports are timely reviewed and triaged. To share a security concern, reach out to security@momentic.ai.
+  </Accordion>
+</AccordionGroup>

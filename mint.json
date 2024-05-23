@@ -52,10 +52,6 @@
   ],
   "navigation": [
     {
-      "group": "Get started",
-      "pages": ["introduction"]
-    },
-    {
       "group": "Essentials",
       "pages": [
         "essentials/preparing-a-test-environment",
@@ -115,6 +111,10 @@
         "steps/local-storage",
         "steps/file-upload"
       ]
+    },
+    {
+      "group": "Internals",
+      "pages": ["security-and-trust"]
     }
   ],
   "footerSocials": {
