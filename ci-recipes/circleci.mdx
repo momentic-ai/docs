@@ -2,3 +2,40 @@
 title: CircleCI
 description: Using Momentic with CircleCI
 ---
+
+The YAML example below assumes you have stored your [API key](/essentials/getting-an-api-key) as a secret named `MOMENTIC_API_KEY` in your [project settings](https://circleci.com/docs/env-vars/).
+
+This configuration also assumes that the command `npm run start` will start your app on `localhost:3000`. If you are testing against a persistent staging or production server, you can remove `--wait-on` and `--start`.
+
+```yaml
+version: 2.1
+
+jobs:
+  momentic:
+    docker:
+      - image: cimg/node:18.16.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npx momentic@latest install-browsers
+      - run:
+          name: Pull all tests
+          command: npx momentic@latest pull --api-key ${MOMENTIC_API_KEY} --all
+      - run:
+          name: Run all tests locally
+          command: npx momentic@latest run ./momentic --api-key ${MOMENTIC_API_KEY} --wait-on localhost:3000 --start 'npm run start' --local
+      - run:
+          name: Push all tests if successful
+          command: npx momentic@latest push --api-key ${MOMENTIC_API_KEY} momentic/
+      - run:
+          name: Failure handler
+          command: |
+            echo "oh no! tests failed!"
+          when: on_fail
+
+workflows:
+  ci:
+    jobs:
+      - momentic
+```
