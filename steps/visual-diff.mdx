@@ -3,3 +3,22 @@ title: Visual diff
 description: Compare screenshots of a page before and after
 icon: camera
 ---
+
+import ElementConfigs from "/snippets/element-configs.mdx";
+
+This step allows you to compare screenshots of a page before and after a change.
+
+## Inputs
+
+<ResponseField name="description" type="string">
+  Description of the element that you want to screenshot. Refer to the [Locating
+  elements](/essentials/locating-elements) guide for more information.
+</ResponseField>
+
+## Configs
+
+<ResponseField name="threshold" type="number" default={10}>
+  Percentage of total pixels that can be different before the step fails.
+</ResponseField>
+
+<ElementConfigs />

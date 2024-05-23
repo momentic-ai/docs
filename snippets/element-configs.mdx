@@ -1,30 +1,3 @@
----
-title: Drag and drop
-description: Drag and drop elements across the page
-icon: up-down-left-right
----
-
-This step allows you to drag an element from one location to another on the page.
-
-## Inputs
-
-<ResponseField name="drag from description" type="string" required>
-  Description of the element where you are initiating drag. Refer to the
-  [Locating elements](/essentials/locating-elements) guide for more information.
-</ResponseField>
-
-<ResponseField name="drag to description" type="string" required>
-  Description of the element where you are finishing drag. Refer to the
-  [Locating elements](/essentials/locating-elements) guide for more information.
-</ResponseField>
-
-## Configs
-
-<ResponseField name="hover duration" type="number">
-  Number of seconds to wait before dropping the element. This can be useful for
-  ensuring that mouse and hover events are triggered before the drop completes.
-</ResponseField>
-
 <ResponseField name="use vision" type="boolean" default={false}>
   Find the element using its visual appearance or position on the screen. The
   element must exist in the current visible area.

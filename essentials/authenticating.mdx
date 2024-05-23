@@ -31,7 +31,7 @@ To extract cookies:
 1. Open a normal browser window to the site you wish to authenticate with. Complete the login process normally if you are not already logged in.
 2. Open Chrome Dev Tools using the Cmd+Option+I shortcut on Mac OS, or through the View menu:
    ![Open Chrome Dev Tools](/images/open-chrome-devtools.png)
-3. Click to the “Application” tab of the Chrome Dev Tools window, and then click on the site you are attempting to authenticate with under the “Cookies” heading in the left-hand sidebar:
+3. Click to the "Application" tab of the Chrome Dev Tools window, and then click on the site you are attempting to authenticate with under the "Cookies" heading in the left-hand sidebar:
    ![Cookies pane](/images/cookies-pane-chrome-devtools.png)
 4. The table on the right-hand side displays all the cookies stored by the application. For each cookie required for authentication, you should create a `Set cookie` step in Momentic based on the row content:
    1. The name and the value fields form the first key-value pair in the cookie. For example, `has_recent_activity=1;`.

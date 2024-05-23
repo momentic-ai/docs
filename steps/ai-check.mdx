@@ -3,3 +3,29 @@ title: AI check
 description: Use AI to check if a condition is true
 icon: check
 ---
+
+AI checks are assertions on steroids. You can specify a condition in natural language that can be as specific as "the button on the top left corner of the page is blue" or as broad as "there is no error page".
+
+For more tips on writing assertions, we recommend the following sections:
+
+<Card
+  href="/essentials/crafting-assertions"
+  title="Writing assertions"
+  icon="check-double"
+>
+  Write complex assertions with zero code.
+</Card>
+
+## Inputs
+
+<ResponseField name="assertion" type="string" required>
+  The condition you want to assert. The assertion should be written in plain
+  English and can be as specific or as broad as you like.
+</ResponseField>
+
+## Configs
+
+<ResponseField name="use vision" type="boolean" default={false}>
+  Use visual cues to check the assertion. This is useful when you want to assert
+  on the color, size, or position of an element.
+</ResponseField>

@@ -3,3 +3,26 @@ title: JavaScript
 description: Execute arbitrary JavaScript in a Node.js sandbox or in the browser
 icon: code
 ---
+
+This step allows you to execute arbitrary JavaScript code in a Node.js sandbox or in the browser.
+
+For more infomation on executing JavaScript, see the [JavaScript guide](/essentials/executing-javascript). For more information on using JavaScript to update test context, see the [Test context guide](/essentials/test-context).
+
+## Inputs
+
+<ResponseField name="javascript" type="string" required>
+  The JavaScript code you want to execute. This can be any valid JavaScript
+  code.
+</ResponseField>
+
+## Configs
+
+<ResponseField name="timeout" type="number" default={10}>
+  Max number of seconds for the action to finish. Maximum is 60 seconds.
+</ResponseField>
+
+<ResponseField name="execute in browser" type="boolean" default={false}>
+  Execute script in the current browser instead of a NodeJS context. If enabled,
+  your code will not be able to use third-party libraries, reference context
+  variables, or return non-string values.
+</ResponseField>

@@ -3,3 +3,15 @@ title: Module
 description: A group of steps that can be reused across multiple tests
 icon: folder
 ---
+
+Modules are a way to group steps together so that they can be reused across multiple tests.
+
+A module can have any number of parameters. These parameters can have input values assigned to them when the module is used in a test. The parameters can then be accessed in the steps that are part of the module.
+
+The following is an example of a module that takes two parameters, `name` and `age`, and how a step in the module can access these parameters:
+
+```
+{{ inputs.name }} is {{ inputs.age }} years old
+```
+
+For more information on how variables can be accessed in a step that is part of a module, see the [Test context guide](/essentials/test-context).

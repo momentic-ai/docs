@@ -3,3 +3,22 @@ title: Select
 description: Interact with native HTML select elements
 icon: list
 ---
+
+import ElementConfigs from "/snippets/element-configs.mdx";
+
+This step allows you to interact with native HTML `<select>` elements on the page.
+
+## Inputs
+
+<ResponseField name="description" type="string" required>
+  Description of the select. Refer to the [Locating
+  elements](/essentials/locating-elements) guide for more information.
+</ResponseField>
+
+<ResponseField name="option" type="string" required>
+  The option to select from the dropdown.
+</ResponseField>
+
+## Configs
+
+<ElementConfigs />

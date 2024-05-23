@@ -3,3 +3,21 @@ title: Scroll
 description: Scroll the page
 icon: computer-mouse
 ---
+
+import ElementConfigs from "/snippets/element-configs.mdx";
+
+## Inputs
+
+<ResponseField name="pixels to scroll" type="number" required>
+  Number of pixels to scroll the page. Positive values scroll down, negative
+  values scroll up.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Description of the element you want to interact with. Refer to the [Locating
+  elements](/essentials/locating-elements) guide for more information.
+</ResponseField>
+
+## Configs
+
+<ElementConfigs />

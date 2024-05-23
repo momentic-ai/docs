@@ -3,3 +3,12 @@ title: File upload
 description: Upload a file to a file input element
 icon: file
 ---
+
+This step allows you to upload a file to a file input element on the page. You must execute this step before interacting with the file input element.
+
+## Inputs
+
+<ResponseField name="file url" type="string" required>
+  Public URL of the file to upload. The URL must be accessible from Momentic
+  workers. Files are limited to 50MB in size.
+</ResponseField>

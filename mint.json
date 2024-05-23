@@ -30,6 +30,11 @@
   ],
   "anchors": [
     {
+      "name": "Interactive demo",
+      "icon": "circle-play",
+      "url": "https://app.supademo.com/demo/N2t2lIbAXPJfetuF0F8AG"
+    },
+    {
       "name": "Community",
       "icon": "discord",
       "url": "https://momentic.ai/chat"
@@ -78,24 +83,34 @@
       "pages": ["ci-recipes/circleci", "ci-recipes/github-actions"]
     },
     {
-      "group": "Steps",
+      "group": "AI steps",
       "pages": [
         "steps/ai-action",
         "steps/ai-check",
         "steps/ai-extract",
-        "steps/ai-wait",
+        "steps/ai-wait"
+      ]
+    },
+    {
+      "group": "Special steps",
+      "pages": [
         "steps/module",
         "steps/captcha",
+        "steps/javascript",
+        "steps/visual-diff"
+      ]
+    },
+    {
+      "group": "Primitive steps",
+      "pages": [
         "steps/click",
         "steps/hover",
         "steps/scroll",
+        "steps/drag-and-drop",
+        "steps/select",
         "steps/cookie",
         "steps/wait",
         "steps/local-storage",
-        "steps/drag-and-drop",
-        "steps/javascript",
-        "steps/select",
-        "steps/visual-diff",
         "steps/file-upload"
       ]
     }

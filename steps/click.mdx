@@ -3,3 +3,30 @@ title: Click
 description: Clicking on an element on the page
 icon: arrow-pointer
 ---
+
+import ElementConfigs from "/snippets/element-configs.mdx";
+
+## Inputs
+
+<ResponseField name="description" type="string" required>
+  Description of the element you want to interact with. Refer to the [Locating
+  elements](/essentials/locating-elements) guide for more information.
+</ResponseField>
+
+## Configs
+
+<ResponseField name="double click" type="boolean" default={false}>
+  Double click on the element.
+</ResponseField>
+
+<ResponseField name="right click" type="boolean" default={false}>
+  Right click on the element.
+</ResponseField>
+
+<ElementConfigs />
+
+<ResponseField name="wait for url" type="string">
+  Expect the click to trigger navigation and wait for the new page to load
+  completely before continuing. Provide a glob pattern or exact string that the
+  new URL should match.
+</ResponseField>
