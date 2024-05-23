@@ -1,4 +1,70 @@
 ---
 title: Syncing tests
-description: Share tests between Momentic cloud and locally using the CLI
+description: Share tests between Momentic Cloud and locally using the CLI
 ---
+
+## Pushing tests
+
+You can push tests by path or directory. A very common workflow is when you merge code to your main branch, you will run the push command in CI to sync tests to Momentic Cloud.
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Push tests to Momentic Cloud:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest push <paths...>
+````
+
+```bash yarn
+yarn dlx momentic@latest push <paths...>
+```
+
+</CodeGroup>
+
+### Arguments
+
+| Argument | Description                                                                                         | Default |
+| -------- | --------------------------------------------------------------------------------------------------- | ------- |
+| `paths`  | File paths pointing to one or more Momentic YAML files. Paths to directories are supported as well. |         |
+
+## Pulling tests
+
+Pulling tests will put them inside the ./momentic directory. You can freely group them with arbitrary folders and directories.
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Pull tests from Momentic Cloud:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest pull [options] [tests...]
+````
+
+```bash yarn
+yarn dlx momentic@latest pull [options] [tests...]
+```
+
+</CodeGroup>
+
+### Arguments
+
+| Argument | Description                                         | Default |
+| -------- | --------------------------------------------------- | ------- |
+| `tests`  | One or more test paths to pull from Momentic Cloud. |         |
+
+A test path is a lowercased version of your test name where spaces are replaced with underscores: 'npx momentic pull hello-world'.
+
+### Options
+
+| Option      | Description                                                                                                  | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------ | ------- |
+| `-a, --all` | Select all tests in your organization from Momentic Cloud. Cannot be used together with `<tests>` arguments. |         |

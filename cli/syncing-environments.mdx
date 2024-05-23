@@ -9,13 +9,13 @@ description: Share environments between Momentic cloud and locally using the CLI
 
 You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
 
-**Step 2**: Start the app:
+**Step 2**: Push environments to Momentic Cloud:
 
 Make sure this is in the same directory as your `./momentic` directory.
 
 <CodeGroup>
 ```bash npm
-npx momentic@latest env pull [options] [envs...]
+npx momentic@latest env push [options] [envs...]
 ````
 
 ```bash yarn
@@ -42,7 +42,7 @@ yarn dlx momentic@latest env push [options] [envs...]
 
 You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
 
-**Step 2**: Start the app:
+**Step 2**: Pull environments from Momentic Cloud:
 
 Make sure this is in the same directory as your `./momentic` directory.
 
@@ -52,7 +52,7 @@ npx momentic@latest env pull [options] [envs...]
 ````
 
 ```bash yarn
-yarn dlx momentic@latest env push [options] [envs...]
+yarn dlx momentic@latest env pull [options] [envs...]
 ```
 
 </CodeGroup>
@@ -61,7 +61,7 @@ yarn dlx momentic@latest env push [options] [envs...]
 
 | Argument | Description                            | Default |
 | -------- | -------------------------------------- | ------- |
-| `envs`   | One or more environment names to push. |         |
+| `envs`   | One or more environment names to pull. |         |
 
 ### Options
 
