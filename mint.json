@@ -76,7 +76,7 @@
     },
     {
       "group": "CI recipes",
-      "pages": ["ci-recipes/circleci", "ci-recipes/github-actions"]
+      "pages": ["ci-recipes/github-actions", "ci-recipes/circleci"]
     },
     {
       "group": "AI steps",
