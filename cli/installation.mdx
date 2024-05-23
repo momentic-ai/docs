@@ -2,3 +2,47 @@
 title: Installation
 description: Installing the CLI from NPM
 ---
+
+import APIKey from "/snippets/api-key.mdx";
+
+<Info>
+
+**Prerequisite**: Please install Node.js (version 20 or higher) before proceeding.
+
+</Info>
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+<APIKey />
+
+**Step 2**: Initialize Momentic:
+
+This will create a local `./momentic` directory where your test, module, and environment YAML files are saved. Make sure to commit these files to version control.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest init
+````
+
+```bash yarn
+yarn dlx momentic@latest init
+```
+
+</CodeGroup>
+
+**Step 3**: Install browsers:
+
+This will download the latest version of Chrome, Firefox, and WebKit browsers to your local machine.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest install-browsers
+````
+
+```bash yarn
+yarn dlx momentic@latest install-browsers
+```
+
+</CodeGroup>

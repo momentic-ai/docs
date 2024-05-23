@@ -2,3 +2,30 @@
 title: Starting the app
 description: Starting the local app using the CLI
 ---
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Start the app:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest app
+````
+
+```bash yarn
+yarn dlx momentic@latest app
+```
+
+</CodeGroup>
+
+## Options
+
+| Option                   | Description                                                                                                                         | Default |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `--pixel-ratio <number>` | Device pixel ratio of your screen or monitor. Mac OS Retina displays and machines marketed as 'HiDPI' should usually set this to 2. | `1`     |
+| `--port <port>`          | Port to run the app on. Defaults to 58888.                                                                                          | `58888` |
+| `--mode <mode>`          | Mode to run the app in. Defaults to web. (choices: "iframe", "web")                                                                 | `"web"` |

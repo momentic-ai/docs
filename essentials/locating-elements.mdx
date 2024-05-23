@@ -5,11 +5,11 @@ description: How to locate elements with a natural language description
 
 ## Using accessibility attributes
 
-<Note>
+<Tip>
   Playwright recommends locators use accessibility attributes such as
   placeholders, alt text, and role. Read more
   [here](https://playwright.dev/docs/locators).
-</Note>
+</Tip>
 
 Momentic's AI by default uses the accessibility tree to understand your application. We are able to view all accessibility attributes and text contents so you can write descriptions like `input with placeholder "email"` and our will be able to find it.
 
@@ -29,10 +29,10 @@ You can be as specific as you desire and our AI **will dynamically auto-heal des
 
 ## Using `data-testid`s and CSS selectors
 
-<Note>
+<Info>
   Selectors that resolve to multiple elements will error. Make sure your CSS
   selectors are specific and only resolve to a single element.
-</Note>
+</Info>
 
 Momentic supports CSS selectors as an escape hatch. We don’t recommend this as it is much more brittle and can lead to test flakiness. You can turn on CSS selector support by toggling the option in the step settings.
 

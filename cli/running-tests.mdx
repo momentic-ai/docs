@@ -2,3 +2,62 @@
 title: Running tests
 description: Running tests using the CLI
 ---
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Install browsers:
+
+This will download the latest version of Chrome, Firefox, and WebKit browsers to your local machine.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest install-browsers
+````
+
+```bash yarn
+yarn dlx momentic@latest install-browsers
+```
+
+</CodeGroup>
+
+**Step 3**: Run tests:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest run [options] [tests...]
+````
+
+```bash yarn
+yarn dlx momentic@latest run [options] [tests...]
+```
+
+</CodeGroup>
+
+## Arguments
+
+| Argument | Description                   | Default |
+| -------- | ----------------------------- | ------- |
+| `envs`   | One or more test identifiers. |         |
+
+To use tests stored on your local file system, pass '--local' and specify file paths to Momentic YAML files or folders that exist locally: 'npx momentic run --local momentic/hello-world.yaml'.
+
+To use tests stored remotely on Momentic Cloud, pass '--remote' and specify one or more test paths. A test path is a lowercased version of your test name where spaces are replaced with underscores: 'npx momentic run --remote hello-world'.
+
+## Options
+
+| Option                              | Description                                                                                                                                               | Default    |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| `--env <env>`                       | Name of the environment to use when running tests.                                                                                                        |            |
+| `--url-override <urlOverride>`      | Fully qualified URL (e.g., https://www.google.com) to start all tests from. Overrides any default starting URL set from the test or environment.          |            |
+| `-r, --remote`                      | Run tests remotely. The production version of this test will be queued for execution.                                                                     | `true`     |
+| `--no-report`                       | Skip reporting test results to Momentic Cloud when running with the `--local` flag.                                                                       |            |
+| `-l, --local`                       | Run tests locally. Useful for accessing apps on localhost. This option does not control where tests are read from (see `<tests>` argument documentation). |            |
+| `--start <start>`                   | Arbitrary setup command that will run before Momentic steps begin.                                                                                        |            |
+| `--wait-on <waitOn>`                | URL to wait to become accessible before Momentic tests begin.                                                                                             |            |
+| `--wait-on-timeout <waitOnTimeout>` | Max time to wait for the `--wait-on` URL to become accessible.                                                                                            | One minute |
+| `--retries <retries>`               | Number of retries to attempt when running tests locally. Defaults to each test's own retry configuration.                                                 |            |
+| `-p, --parallel <parallel>`         | When running with the `--local` flag, the number of tests to run in parallel. Defaults to 1.                                                              | `1`        |

@@ -2,3 +2,69 @@
 title: Syncing environments
 description: Share environments between Momentic cloud and locally using the CLI
 ---
+
+## Pushing environments
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Start the app:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest env pull [options] [envs...]
+````
+
+```bash yarn
+yarn dlx momentic@latest env push [options] [envs...]
+```
+
+</CodeGroup>
+
+### Arguments
+
+| Argument | Description                            | Default |
+| -------- | -------------------------------------- | ------- |
+| `envs`   | One or more environment names to push. |         |
+
+### Options
+
+| Option      | Description                                                                                                         | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| `-a, --all` | Select all environments in your organization from Momentic Cloud. Cannot be used together with `<paths>` arguments. |         |
+
+## Pulling environments
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Start the app:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest env pull [options] [envs...]
+````
+
+```bash yarn
+yarn dlx momentic@latest env push [options] [envs...]
+```
+
+</CodeGroup>
+
+### Arguments
+
+| Argument | Description                            | Default |
+| -------- | -------------------------------------- | ------- |
+| `envs`   | One or more environment names to push. |         |
+
+### Options
+
+| Option      | Description                                                                                                         | Default |
+| ----------- | ------------------------------------------------------------------------------------------------------------------- | ------- |
+| `-a, --all` | Select all environments in your organization from Momentic Cloud. Cannot be used together with `<paths>` arguments. |         |
