@@ -2,3 +2,42 @@
 title: Authenticating
 description: How to authenticate in Momentic tests
 ---
+
+## No-code approaches
+
+1. Generate a test account with minimal privileges that is only used for Momentic. Then, pass the credentials directly to the Momentic test via an environment. This is the most secure way to authenticate in Momentic tests.
+2. If you app uses cookie-based authentication, extract cookies from an existing session and use the [Cookie](/steps/cookie) step to inject the cookies into your test. See the section below for more details.
+
+## Code-first approaches
+
+1. If you can modify the infrastructure setup for your app, you can choose to exempt Momentic from authentication using networking rules:
+   1. For Momentic Cloud, whitelist the static IP address `34.106.239.183` from authentication. This is Momentic’s fixed egress IP.
+   2. For Momentic instances running locally, whitelist the IP address range for your internal network.
+2. If you can make code changes to your app, you can choose to exempt Momentic from authentication by detecting a secret header or cookie:
+   1. Generate a secret key with random characters.
+   2. Allow requests to your server to proceed by detecting the header or cookie:
+      1. For a header approach: modify your frontend code to send a local storage value as a header (e.g. `X-MOMENTIC-KEY`) on all requests. Read the header on your server and allow access if the header value matches your secret key.
+      2. For a cookie approach: you do not have to modify your frontend code since cookies for your domain will be sent automatically by the browser. Your backend or infrastructure layer should verify that the secret cookie is provided on all requests and allow access if the cookie value matches the secret key.
+   3. In your Momentic test, use the [Local storage](/steps/local-storage) step or [Cookie](/steps/cookie) step to inject the appropriate credentials into the Momentic session before running any other steps.
+
+## Extracting cookies
+
+If you are already logged in to your site on your local machine, you may be able to extract the cookies needed to allow Momentic to reuse the same session.
+
+Note that your server might expire and replace cookies periodically. To avoid flakiness in your Momentic test, ensure that your server either automatically extends expiry dates when receiving cookies, or does not expire the specific set of cookies you are using.
+
+To extract cookies:
+
+1. Open a normal browser window to the site you wish to authenticate with. Complete the login process normally if you are not already logged in.
+2. Open Chrome Dev Tools using the Cmd+Option+I shortcut on Mac OS, or through the View menu:
+   ![Open Chrome Dev Tools](/images/open-chrome-devtools.png)
+3. Click to the “Application” tab of the Chrome Dev Tools window, and then click on the site you are attempting to authenticate with under the “Cookies” heading in the left-hand sidebar:
+   ![Cookies pane](/images/cookies-pane-chrome-devtools.png)
+4. The table on the right-hand side displays all the cookies stored by the application. For each cookie required for authentication, you should create a `Set cookie` step in Momentic based on the row content:
+   1. The name and the value fields form the first key-value pair in the cookie. For example, `has_recent_activity=1;`.
+   2. The rest of the row contains metadata for the cookie. You should copy these into the cookie using [the same format](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie).
+   3. To reduce flakiness and ensure that the Momentic browser is always able to pass the cookie to your application, we recommend overriding the following attributes on the cookie:
+      1. `Expires`: Choose a random date far in the future, such as `Friday, 1 Jan 2038 00:00:00 GMT`
+      2. `Secure`: Always set `secure` so that the browser can respect the `SameSite` value.
+      3. `SameSite:` Always set to `None` so that Momentic can set this cookie for your application from any page.
+   4. The final string for your [Cookie](/steps/cookie) value should look something like this: `dotcom_user=jeff-an; secure; domain=.github.com; SameSite=None; HttpOnly;`

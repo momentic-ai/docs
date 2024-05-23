@@ -2,3 +2,31 @@
 title: Test context
 description: Values that steps have access to during execution
 ---
+
+## Getting data
+
+All steps has access to the following variables:
+
+- `env`: An object containing any configured environment variables, as well as any dynamic variables set through `setVariable` during the test. The following variables are automatically set in the `env` object:
+  - `BASE_URL` : the starting URL of the test.
+  - `CURRENT_URL` : the current URL of the active page. This is updated after every step.
+- `results`: An array containing the results of steps executed during the test. This array will be continuously updated throughout the test as more steps are completed. Each element of the array corresponds to the `data` field of the step output, which can be viewed in the test editor UI.
+  - For [Module](/steps/module) and [AI action](/steps/ai-action) steps, the result of the overall step will be equal to the result of the final sub-step.
+
+![Viewing the result returned from a step.](/images/view-step-results.png)
+
+### Within a module
+
+[Modules](/steps/module) have their own context that is independent from any tests that include them. They can also be passed data via parameters and inputs.
+
+[Modules](/steps/module) do automatically inherit all values on `env` from its parent test at the **time of execution**. This means that if you modify `env` inside a [Module](/steps/module), it will not affect the parent test.
+
+## Setting data
+
+You can use the special `setVariable` function within [JavaScript](/steps/javascript) steps to modify the `env` global object. Non-serializable values such as functions and circular objects will be rejected.
+
+The function signature of `setVariable` function is as follows:
+
+```ts
+function setVariable(name: string, value: unknown);
+```

@@ -24,8 +24,8 @@
   },
   "tabs": [
     {
-      "name": "Step types",
-      "url": "step-types"
+      "name": "Steps",
+      "url": "steps"
     }
   ],
   "anchors": [
@@ -78,20 +78,25 @@
       "pages": ["ci-recipes/circleci", "ci-recipes/github-actions"]
     },
     {
-      "group": "Step types",
+      "group": "Steps",
       "pages": [
-        "step-types/ai-action",
-        "step-types/ai-check",
-        "step-types/ai-extract",
-        "step-types/ai-wait",
-        "step-types/captcha",
-        "step-types/click",
-        "step-types/cookie",
-        "step-types/drag-and-drop",
-        "step-types/javascript",
-        "step-types/select",
-        "step-types/visual-diff",
-        "step-types/file-upload"
+        "steps/ai-action",
+        "steps/ai-check",
+        "steps/ai-extract",
+        "steps/ai-wait",
+        "steps/module",
+        "steps/captcha",
+        "steps/click",
+        "steps/hover",
+        "steps/scroll",
+        "steps/cookie",
+        "steps/wait",
+        "steps/local-storage",
+        "steps/drag-and-drop",
+        "steps/javascript",
+        "steps/select",
+        "steps/visual-diff",
+        "steps/file-upload"
       ]
     }
   ],

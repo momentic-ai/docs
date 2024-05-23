@@ -2,3 +2,33 @@
 title: Crafting assertions
 description: How to write assertions as conditional statements
 ---
+
+## Content-based assertions
+
+By default, Momentic’s AI uses a processed accessibility tree representation of your application to make decisions.
+
+<Note>
+  When using content-based assertions, our AI has access to the **whole page**,
+  not just the portion visible in the viewport. This is also significantly
+  faster.
+</Note>
+
+## Data tables
+
+- Content-based assertions are great for analyzing and asserting on tabular data. Our AI can accurately understand data present in a HTML table.
+- If you are using techniques such as list virtualization where only visible rows are rendered, you will have to use the `Scroll` step to make sure other rows are shown.
+
+## Vision-based assertions
+
+To enable vision, turn on `Use vision` in the step configuration. This mode is effective for assertions that include color, position on the page, or visual information like layout.
+
+<Note>
+  Turning on vision would limit our AI to the **current visible viewport** as it
+  relies on a screenshot of the page.
+</Note>
+
+## Data visualizations
+
+- We support SVG or canvas based data visualizations rendered by libraries such as D3, Hicharts, Recharts, and more.
+- Accuracy improves when there are clear labels and axes within the viewport.
+- For interactive visualizations, use [Click](/steps/click) or [Hover](/steps/hover) steps to show tooltips and interact with data visualizations.

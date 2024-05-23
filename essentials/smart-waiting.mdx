@@ -2,3 +2,12 @@
 title: Smart waiting
 description: How does Momentic's auto waiting work?
 ---
+
+Momentic tests automatically detect when the page has finished loading and when the page is ready for interaction after executing each step.
+
+Momentic uses a combination of the following strategies to determine when the page is ready for the next step:
+
+1. **Network idle**: Momentic waits for the network to be idle for a certain amount of time.
+2. **DOM ready**: Momentic waits for the DOM to be ready. Specifically the `load` and `DOMContentLoaded` events.
+
+You can turn this behavior off in test settings if you want to manually control waiting via [AI wait](/steps/ai-wait) or [Wait](/steps/wait) steps.

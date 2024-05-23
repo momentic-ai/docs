@@ -2,3 +2,40 @@
 title: Locating elements
 description: How to locate elements with a natural language description
 ---
+
+## Using accessibility attributes
+
+<Note>
+  Playwright recommends locators use accessibility attributes such as
+  placeholders, alt text, and role. Read more
+  [here](https://playwright.dev/docs/locators).
+</Note>
+
+Momentic's AI by default uses the accessibility tree to understand your application. We are able to view all accessibility attributes and text contents so you can write descriptions like `input with placeholder "email"` and our will be able to find it.
+
+It is common to reference elements by the element type as well. For example: `email input` or `password input` or `submit button`.
+
+You can be as specific as you desire and our AI **will dynamically auto-heal descriptions** within a certain threshold.
+
+## Tips for writing descriptions
+
+1. When using color or positional knowledge, make sure to turn on `Use vision` in the step settings.
+2. By default, our AI uses the accessibility tree of the **whole web page**, so it can also locate elements not visible in the current viewport.
+3. When `Use vision` is enabled, our AI only uses the **current visible viewport**.
+4. When an element can’t be found, that is usually a signal that it is missing accessibility attributes such as `role` or `name`. For more on web accessibility guidelines, [go here](https://www.w3.org/WAI/standards-guidelines/wcag/). Your users will thank you!
+5. As a last resort, you can open Chrome DevTools and turn on [full-page accessibility tree](https://developer.chrome.com/docs/devtools/accessibility/reference#explore-tree). This is similar to how our AI views your app. For example: _“Search… searchbox”_ or _“docs link”_ will correctly locate it on the page.
+
+![chrome a11y tree](/images/a11y-tree-chrome-devtools.png)
+
+## Using `data-testid`s and CSS selectors
+
+<Note>
+  Selectors that resolve to multiple elements will error. Make sure your CSS
+  selectors are specific and only resolve to a single element.
+</Note>
+
+Momentic supports CSS selectors as an escape hatch. We don’t recommend this as it is much more brittle and can lead to test flakiness. You can turn on CSS selector support by toggling the option in the step settings.
+
+You are able to locate elements using `data-testid` attributes. For example: `[data-testid="value"]`.
+
+You are also able to locate elements by using CSS selectors. For example: `input#username` or `button.mui.primary`.
