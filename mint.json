@@ -104,6 +104,8 @@
       "group": "Primitive steps",
       "pages": [
         "steps/click",
+        "steps/type",
+        "steps/press",
         "steps/hover",
         "steps/scroll",
         "steps/drag-and-drop",

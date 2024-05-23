@@ -1,0 +1,35 @@
+---
+title: Type
+description: Typing text into an input field
+icon: keyboard
+---
+
+import ElementConfigs from "/snippets/element-configs.mdx";
+
+## Inputs
+
+<ResponseField name="value" type="string" required>
+  The text you want to type into the input field.
+</ResponseField>
+
+<ResponseField name="description" type="string" required>
+  Description of the element you want to interact with. Refer to the [Locating
+  elements](/essentials/locating-elements) guide for more information.
+</ResponseField>
+
+## Configs
+
+<ResponseField name="replace content" type="boolean" default={true}>
+  Replace the existing content in the input field with the new text.
+</ResponseField>
+
+<ResponseField name="press enter" type="boolean" default={false}>
+  Press the Enter key after typing the text.
+</ResponseField>
+
+<ResponseField name="press keys sequentially" type="boolean" default={false}>
+  Type each character in the text one by one, with a small delay between each
+  character.
+</ResponseField>
+
+<ElementConfigs />
