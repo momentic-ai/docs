@@ -3,69 +3,65 @@ title: What is Momentic?
 description: An Introduction to the Momentic testing platform.
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.svg"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.svg"
-  alt="Hero Dark"
-/>
+Momentic is an AI-powered testing platform for developers. We make AI do the heavy lifting for you: finding elements, reasoning about assertions, visual comparisons, and even generating whole test cases!
 
-## Setting up
+Start testing with Momentic Cloud or use the [CLI](/cli) to run tests locally!
 
-The first step to world-class documentation is setting up your editing environments.
+## Why Momentic?
+
+Momentic helps developers write and maintain complex end-to-end tests in half the time. In particular, here are some of the most common points that developers mention after adopting Momentic:
+
+- Low-code **interactive** test editor
+- Steps that can **adapt** to changes in the UI without flaking
+- Create complex assertions with **zero code**
+- **Best-in-class developer experience** with our easy-to-use [local app](/cli/starting-the-app)
+- Can run tests manually, on a schedule, via API, or via [CLI](/cli)
+- Can run tests in **any** environment (locally, any URL, and in CI)
+- Accessibility audits and **suggested fixes**
+
+## How does Momentic work?
+
+Users interact with the Momentic test editor through the cloud or local app. You can build tests visually and interactively. Saved tests can be executed via Momentic Cloud or locally via the [CLI](/cli).
+
+Our AI uses accessibility data and visual cues to locate HTML elements on the page. Unlike CSS selectors or XPath that Selenium uses, our AI can dynamically locate elements at runtime while being flexible to UI and DOM changes. For example, if the id of the ‘Submit’ button is changed or the button is moved from the left side of the page to the right, a Momentic test would not require any maintenance from an engineer.
+
+Momentic has a custom Node.js test runner that translates our proprietary test format into actions at runtime that can be executed in a browser. We do not generate Selenium, Playwright, or any code under the hood.
+
+## How reliable is Momentic?
+
+Momentic tests are much more reliable than Playwright or Cypress tests. Over a 30-day window, we achieved **99.2%** reliability based on customer-labeled data, compared to the industry average of ~95%.
+
+Momentic’s improved reliability comes from its use of AI-enabled features:
+
+| Category                     | Traditional scripts                                                                                                                                                                            | Momentic tests                                                                                                                                                                                                                                          |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Locating elements            | Developers find and write hardcoded CSS selectors and element IDs that are prone to breaking when the application changes.                                                                     | Developers describe elements in plain English. Momentic uses AI to find the relevant element on the page based on the description, allowing the test to automatically adapt to application changes.                                                     |
+| Waiting for states           | Developers write hardcoded sleep times and loops, which break when infrastructure or network speeds change.                                                                                    | [AI wait](/steps/ai-wait) step that intelligently waits until a condition is true before proceeding to the next steps. Momentic also automatically waits for the network and page to stabilize after every action.                                      |
+| Executing sequences of steps | Developers write lengthy testing scripts for every desired user workflow. If a single step in the user workflow changes, developers must maintain the script and modify all tests that use it. | Momentic offers an [AI action](/steps/ai-action) step that automatically generates sub-steps based on a user-provided goal. If the generated steps break, Momentic automatically re-generates the steps, requiring zero intervention from the engineer. |
+
+## How to get started with Momentic?
+
+Depending on your use case, it might be helpful to look into some of the resources and guides provided below.
 
 <CardGroup cols={2}>
-  <Card
-    title="Edit Your Docs"
-    icon="pen-to-square"
-    href="https://mintlify.com/docs/quickstart"
-  >
-    Get your docs set up locally for easy development
+  <Card href="/cli" title="CLI" icon="square-terminal">
+    Develop tests locally with the Momentic CLI.
   </Card>
   <Card
-    title="Preview Changes"
-    icon="image"
-    href="https://mintlify.com/docs/development"
+    href="/essentials/locating-elements"
+    title="Locating elements"
+    icon="bullseye"
   >
-    Preview your changes before you push to make sure they're perfect
-  </Card>
-</CardGroup>
-
-## Make it yours
-
-Update your docs to your brand and add valuable content for the best user conversion.
-
-<CardGroup cols={2}>
-  <Card
-    title="Customize Style"
-    icon="palette"
-    href="https://mintlify.com/docs/settings/global"
-  >
-    Customize your docs to your company's colors and brands
+    Locate elements with a description.
   </Card>
   <Card
-    title="Reference APIs"
-    icon="code"
-    href="https://mintlify.com/docs/api-playground/openapi"
+    href="/essentials/crafting-assertions"
+    title="Writing assertions"
+    icon="check-double"
   >
-    Automatically generate endpoints from an OpenAPI spec
+    Write complex assertions with zero code.
   </Card>
-  <Card
-    title="Add Components"
-    icon="screwdriver-wrench"
-    href="https://mintlify.com/docs/components/accordion"
-  >
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card
-    title="Get Inspiration"
-    icon="stars"
-    href="https://mintlify.com/customers"
-  >
-    Check out our showcase of our favorite documentation
+  <Card href="/steps" title="Steps" icon="stairs">
+    All the steps you can use in a Momentic test.
   </Card>
 </CardGroup>
