@@ -3,7 +3,9 @@ title: Locating elements
 description: How to locate elements with a natural language description
 ---
 
-## Using accessibility attributes
+## Writing element descriptors
+
+### Be specific
 
 <Tip>
   Playwright recommends locators use accessibility attributes such as
@@ -11,13 +13,35 @@ description: How to locate elements with a natural language description
   [here](https://playwright.dev/docs/locators).
 </Tip>
 
-Momentic's AI by default uses the accessibility tree to understand your application. We are able to view all accessibility attributes and text contents so you can write descriptions like `input with placeholder "email"` and our will be able to find it.
+Describe the desired element with a specific [web accessibility role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles), such as "the submit **button**", "the homepage **link**", or "password **input**". If you are unsure what type of element you are targeting, you can use the [Chrome Dev Tools](https://developer.chrome.com/blog/full-accessibility-tree#full_accessibility_tree_in_devtools) to find out.
 
-It is common to reference elements by the element type as well. For example: `email input` or `password input` or `submit button`.
+Momentic's AI by default uses the accessibility tree to understand your application. We are able to view all accessibility attributes and text contents so you can write descriptions like `input with placeholder "email"` and our AI will be able to find it.
 
 You can be as specific as you desire and our AI **will dynamically auto-heal descriptions** within a certain threshold.
 
-## Tips for writing descriptions
+### Include labels
+
+If the desired element has a label, include that in your descriptor, such as "the **search** button" or "the **username** textbox". Our AI web agent will generally attempt to match this label to the "name", "id", or ["aria-label"](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) attribute of HTML elements on your website. Defining ARIA attributes not only improves the performance of Momentic tests, but also helps your website stay compliant with [ADA standards](https://www.access-board.gov/ada/).
+
+### Include position cues
+
+<Tip>
+  When you're using `nth` or `closest`, make sure to turn the cache off for that
+  step. This will ensure that the AI will re-evaluate the page and find the
+  correct element.
+</Tip>
+
+In general, Momentic's AI does an excellent job identifying elements by its name or the text it contains as it appears on the screen; however, in some cases (e.g., when there are multiple instances of the same element on the screen), you will need to specify a relative location to provide a better context to identify it.
+
+You can provide cues such as "...**below** the 'Introduction' header" or "...**beside** the 'Back' button". Only use positioning cues if they are expected to be stable over time.
+
+You acn also use the `inside` keyword to specify the parent element of another element. For example, "the 'Submit' button **inside** the user dialog".
+
+You can also use the `nth` keyword to specify the position of an element in a list. For example, "the **second** 'Submit' button".
+
+You can also use the `closest` keyword to specify the closest element to another element. For example, "the **closest** 'Submit' button to the 'Username' input".
+
+### Other tips
 
 1. When using color or positional knowledge, make sure to turn on `Use vision` in the step settings.
 2. By default, our AI uses the accessibility tree of the **whole web page**, so it can also locate elements not visible in the current viewport.
@@ -28,6 +52,10 @@ You can be as specific as you desire and our AI **will dynamically auto-heal des
 ![chrome a11y tree](/images/a11y-tree-chrome-devtools.png)
 
 ## Using `data-testid`s and CSS selectors
+
+<Warning>
+  Using CSS selectors is not recommended as it can lead to test flakiness.
+</Warning>
 
 <Info>
   Selectors that resolve to multiple elements will error. Make sure your CSS
