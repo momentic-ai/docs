@@ -38,16 +38,6 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://momentic.ai/chat"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://momentic.ai/blog"
-    },
-    {
-      "name": "Changelog",
-      "icon": "list-timeline",
-      "url": "https://momentic.ai/changelog"
     }
   ],
   "navigation": [
