@@ -34,8 +34,8 @@ jobs:
       - run: npx momentic@latest install-browsers
 
         # run tests locally
-      - run: npx momentic@latest run c2c2fee4-4778-4bbb-8f0c-31f25f774726 --local --start "npm run start" --wait-on http://localhost:3000
+      - run: npx momentic@latest run ./momentic --local --start "npm run start" --wait-on http://localhost:3000
 
-        # run tests remotely
-      - run: npx momentic@latest run c2c2fee4-4778-4bbb-8f0c-31f25f774726 --remote
+        # run tests remotely and wait
+      - run: npx momentic@latest run test-path-1 --remote --wait
 ```
