@@ -70,7 +70,7 @@
     },
     {
       "group": "CI recipes",
-      "pages": ["ci-recipes/github-actions", "ci-recipes/circleci"]
+      "pages": ["ci-recipes/github-actions", "ci-recipes/circleci", "ci-recipes/amazon-linux"]
     },
     {
       "group": "AI steps",

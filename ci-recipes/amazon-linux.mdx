@@ -1,0 +1,10 @@
+---
+title: Amazon Linux
+description: Using Momentic on Amazon Linux
+---
+
+Amazon Linux is an architecture commonly used for self-hosting runners on platforms such as Jenkins, Buildkite, and Github Actions.
+
+Due to Chromium dependency limitations, the Momentic CLI cannot run tests directly on Amazon Linux machines. However, it is possible to run a Docker image on Amazon Linux that then invokes Momentic.
+
+An example of such a setup integrated with Github Actions can be viewed [here](https://github.com/momentic-ai/momentic-github-actions-demo/blob/main/.github/workflows/test-amazon-linux.yml). This configuration assumes that the Momentic API key is available as a [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) in your repository. Replace all placeholder values in the YAML template before shipping to production.
