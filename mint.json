@@ -43,13 +43,15 @@
   "navigation": [
     {
       "group": "Get started",
-      "pages": ["introduction"]
+      "pages": [
+        "get-started/introduction",
+        "get-started/preparing-a-test-environment",
+        "get-started/getting-an-api-key"
+      ]
     },
     {
       "group": "Essentials",
       "pages": [
-        "essentials/preparing-a-test-environment",
-        "essentials/getting-an-api-key",
         "essentials/authenticating",
         "essentials/locating-elements",
         "essentials/crafting-assertions",
@@ -70,7 +72,11 @@
     },
     {
       "group": "CI recipes",
-      "pages": ["ci-recipes/github-actions", "ci-recipes/circleci", "ci-recipes/amazon-linux"]
+      "pages": [
+        "ci-recipes/github-actions",
+        "ci-recipes/circleci",
+        "ci-recipes/amazon-linux"
+      ]
     },
     {
       "group": "AI steps",
