@@ -1,0 +1,33 @@
+---
+title: Generating fake data
+description: Generating fake data for your tests
+---
+
+Momentic tests preloads [faker.js](https://fakerjs.dev/). This library allows you to generate fake data for your tests. You can use it to generate random names, addresses, emails, and more.
+
+## Usage
+
+To use faker.js in your tests, you can call the `faker` function directly. Here's an example:
+
+```
+TYPE "{{ faker.internet.userName() }}" into "username input"
+```
+
+This step will generate a random username and type it into the username input field.
+
+You can also use faker.js inside [JavaScript](/steps/javascript) steps to generate more complex data. Here's an example:
+
+```js
+const firstName = faker.name.firstName();
+const lastName = faker.name.lastName();
+const email = faker.internet.email(firstName, lastName);
+
+const person = {
+  firstName,
+  lastName,
+  email,
+};
+
+// makes the person object available to other steps as env.FAKE_PERSON
+setVariable("FAKE_PERSON", person);
+```

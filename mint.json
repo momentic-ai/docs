@@ -51,14 +51,16 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Platform",
       "pages": [
-        "essentials/authenticating",
-        "essentials/locating-elements",
-        "essentials/crafting-assertions",
-        "essentials/executing-javascript",
-        "essentials/test-context",
-        "essentials/smart-waiting"
+        "platform/locating-elements",
+        "platform/crafting-assertions",
+        "platform/authenticating",
+        "platform/executing-javascript",
+        "platform/test-context",
+        "platform/fake-data",
+        "platform/sms",
+        "platform/smart-waiting"
       ]
     },
     {
@@ -129,5 +131,11 @@
     "thumbsRating": true,
     "suggestEdit": true,
     "raiseIssue": true
-  }
+  },
+  "redirects": [
+    {
+      "source": "/essentials/:slug*",
+      "destination": "/platform/:slug*"
+    }
+  ]
 }

@@ -1,0 +1,77 @@
+---
+title: SMS
+description: Send and receive SMS messages in your tests
+---
+
+<Info>
+
+**Prerequisite**: Get dedicated phone numbers from the Momentic team before proceeding.
+
+</Info>
+
+Momentic allows you to send and receive SMS messages in your tests. This feature is useful for testing SMS-based authentication, notifications, and other features that require sending and receiving SMS messages.
+
+## Usage
+
+SMS support is currently surfaced through the [JavaScript](/steps/javascript) step. There are two main functions you can use to interact with SMS messages:
+
+- `sendSms`: Sends an SMS message to a phone number.
+- `waitForLatestSms`: Retrieves the most recent SMS message sent to your dedicated phone number.
+
+The function signature of these functions are as follows:
+
+```ts
+function sendSms(params: {
+  body: string;
+  to: string;
+  from: string;
+}): Promise<void>;
+
+function waitForLatestSms(params: {
+  to?: string;
+  from?: string;
+  timeout?: number;
+}): Promise<{ body: string }>;
+```
+
+Here's an example of how you can use these functions in your tests:
+
+```js
+const fromNumber = "+17622013868";
+const toNumber = "+14066921501";
+
+// send sms
+await sendSms({
+  body: "Refer",
+  to: toNumber,
+  from: fromNumber,
+});
+
+const firstMessage = await waitForLatestSms({
+  to: fromNumber,
+  timeout: 5_000,
+});
+
+// assert on content
+assert(firstMessage && firstMessage.body.includes("Thanks for engaging"));
+
+// send confirmation
+await sendSms({
+  body: "1",
+  to: toNumber,
+  from: fromNumber,
+});
+
+// get reply message
+const secondMessage = await waitForLatestSms({
+  to: fromNumber,
+  timeout: 5_000,
+});
+
+assert(secondMessage);
+
+// use regex to extract link from message body
+const link = secondMessage.body.match(/https?:\/\/[^\s]+/)[0];
+
+return link;
+```
