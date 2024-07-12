@@ -41,3 +41,20 @@ To extract cookies:
       2. `Secure`: Always set `secure` so that the browser can respect the `SameSite` value.
       3. `SameSite:` Always set to `None` so that Momentic can set this cookie for your application from any page.
    4. The final string for your [Cookie](/steps/cookie) value should look something like this: `dotcom_user=jeff-an; secure; domain=.github.com; SameSite=None; HttpOnly;`
+
+## Using cached modules
+
+If you have a module that performs a login action, you can cache the results of the module so that the login action does not need to be repeated in every test. For more information, see the [Module](/steps/module) step.
+
+Here is an example of a cached module that performs a username and password login:
+
+```
+MODULE "login with username and password"
+  TYPE "username" into "username input"
+  TYPE "password" into "password input"
+  CLICK "login button"
+  SAVE_AUTH_STATE
+LOAD_AUTH_STATE "results[0]"
+```
+
+In this example, the [Save auth state](/steps/save-auth-state) step saves the authentication state after the login action, and the [Load auth state](/steps/load-auth-state) step loads the authentication state before running the test. This ensures that the login action is only performed once and the authentication state is reused across multiple tests.
