@@ -3,7 +3,7 @@ title: Test context
 description: Values that steps have access to during execution
 ---
 
-## Getting data
+## Accessing data
 
 All steps has access to the following variables:
 
@@ -15,13 +15,13 @@ All steps has access to the following variables:
 
 ![Viewing the result returned from a step.](/images/view-step-results.png)
 
-### Within a module
+### In a module
 
-[Modules](/steps/module) have their own context that is independent from any tests that include them. They can also be passed data via parameters and inputs.
+[Modules](/steps/module) have their own context that is independent from any tests that include them. They can also be passed data via parameters and inputs. This can be useful when you need to test similar scenarios with different inputs.
 
-[Modules](/steps/module) do automatically inherit all values on `env` from its parent test at the **time of execution**. This means that if you modify `env` inside a [Module](/steps/module), it will not affect the parent test.
+When editing a module, you can add parameters to the module definition and use them in the module steps using the `{{ }}` syntax. Reference module parameters using the following syntax `{{ inputs.PARAMETER_NAME }}`.
 
-## Setting data
+## Updating data
 
 You can use the special `setVariable` function within [JavaScript](/steps/javascript) steps to modify the `env` global object. Non-serializable values such as functions and circular objects will be rejected.
 
@@ -30,3 +30,7 @@ The function signature of `setVariable` function is as follows:
 ```ts
 function setVariable(name: string, value: unknown);
 ```
+
+### In a module
+
+[Modules](/steps/module) do automatically inherit all values on `env` from its parent test at the **time of execution**. This means that if you modify `env` inside a [Module](/steps/module), it will not affect the parent test context.

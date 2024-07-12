@@ -1,0 +1,81 @@
+---
+title: Testing best practices
+description: Best practices for writing tests in Momentic
+---
+
+## Write clear and concise tests
+
+Clear and concise tests are easier to read, understand, and maintain. Here are some tips to achieve this:
+
+- **Single responsibility**: Each test should focus on verifying a single behavior or functionality. Avoid testing multiple aspects in one test case.
+- **Avoid complex logic**: Keep logic within the test to a minimum. If complex setup or assertions are needed, consider moving them to helper functions.
+- **Meaningful assertions**: Make assertions clear and direct. Avoid unnecessary or redundant assertions.
+
+Make sure to always follow best practices for [describing elements](essentials/locating-elements) and [writing assertions](/essentials/crafting-assertions).
+
+## Follow the AAA pattern
+
+The Arrange-Act-Assert (AAA) pattern is a common structure for writing tests. It ensures that tests are organized and easy to follow.
+
+- **Arrange**: Set up the necessary conditions and inputs for the test.
+- **Act**: Execute the code under test.
+- **Assert**: Verify that the outcome matches the expected result.
+
+In practice, this pattern might look like:
+
+```
+// Arrange
+NAVIGATE to "https://example.com"
+
+// Act
+TYPE "username" into "username input"
+TYPE "password" into "password input"
+CLICK "login button"
+
+// Assert
+AI_CHECK "login success message"
+```
+
+## Keep tests independent
+
+Independent tests can run in any order without affecting each other. This makes the test suite more reliable and easier to debug.
+
+- **No shared state**: Avoid sharing state between tests. Each test should set up its own state and clean up afterwards.
+- **Reset state**: Ensure that any state modified during a test is reset after the test completes.
+
+### Setup and teardown
+
+If a test requires specific state to be set up, consider using a setup step at the beginning of the test to establish the necessary conditions.
+
+For test cleanup, you can use teardown steps at the end of the test to reset any state that was modified during the test.
+
+A common pattern is to expose private authenticated APIs for the test environment. This allows tests to set up and tear down state as needed without exposing these APIs to the public.
+
+## Create modules to share logic
+
+When you notice that steps are often duplicated in your tests, consider grouping them into a module to share logic. This can help reduce duplication and make tests easier to maintain.
+
+For example, if you have a username and log in password that are used in multiple tests, you can create a module that provides these values.
+
+```
+TYPE "username" into "username input"
+TYPE "password" into "password input"
+CLICK "login button"
+```
+
+This module can then be included in other tests as needed.
+
+```
+MODULE "login with username and password"
+  TYPE "username" into "username input"
+  TYPE "password" into "password input"
+  CLICK "login button"
+```
+
+### Parameterized modules
+
+You can also create parameterized modules that accept arguments to customize their behavior. This can be useful when you need to test similar scenarios with different inputs.
+
+When editing a module, you can add parameters to the module definition and use them in the module steps using the `{{ }}` syntax. Reference module parameters using the following syntax `{{ inputs.PARAMETER_NAME }}`.
+
+For more information, see [Test context](/essentials/test-context).

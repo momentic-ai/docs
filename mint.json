@@ -46,7 +46,8 @@
       "pages": [
         "get-started/introduction",
         "get-started/preparing-a-test-environment",
-        "get-started/getting-an-api-key"
+        "get-started/getting-an-api-key",
+        "get-started/best-practices"
       ]
     },
     {
