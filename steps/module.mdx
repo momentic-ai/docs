@@ -15,3 +15,11 @@ The following is an example of a module that takes two parameters, `name` and `a
 ```
 
 For more information on how variables can be accessed in a step that is part of a module, see [Test context](/essentials/test-context).
+
+## Caching
+
+Cached modules are a way to store the results of a module so that they can be reused across multiple tests without re-executing. A common use case is to cache the results of a module that performs a login action, so that the login action does not need to be repeated in every test.
+
+Create a cached module by turning on the `Cache result` toggle in the module settings.
+
+You must specify a unique cache key. This key is used to identify the cached result and retrieve it. Module inputs are automatically appended to the key to ensure that the cached result is unique for each set of inputs.

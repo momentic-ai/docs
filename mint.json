@@ -89,12 +89,14 @@
       ]
     },
     {
-      "group": "Special steps",
+      "group": "Advanced steps",
       "pages": [
         "steps/module",
         "steps/captcha",
         "steps/javascript",
-        "steps/visual-diff"
+        "steps/visual-diff",
+        "steps/save-auth-state",
+        "steps/load-auth-state"
       ]
     },
     {
