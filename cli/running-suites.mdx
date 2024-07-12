@@ -1,0 +1,50 @@
+---
+title: Running suites
+description: Running suites using the CLI
+---
+
+**Step 1**: Get an API key:
+
+You will need an [API key](/essentials/getting-an-api-key) to authenticate against Momentic's servers.
+
+**Step 2**: Install browsers:
+
+This will download the latest version of Chrome, Firefox, and WebKit browsers to your local machine.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest install-browsers
+````
+
+```bash yarn
+yarn dlx momentic@latest install-browsers
+```
+
+</CodeGroup>
+
+**Step 3**: Run tests:
+
+Make sure this is in the same directory as your `./momentic` directory.
+
+<CodeGroup>
+```bash npm
+npx momentic@latest suite run [options] [suites...]
+````
+
+```bash yarn
+yarn dlx momentic@latest suite run [options] [suites...]
+```
+
+</CodeGroup>
+
+## Arguments
+
+| Argument | Description                    | Default |
+| -------- | ------------------------------ | ------- |
+| `suites` | One or more suite identifiers. |         |
+
+## Options
+
+| Option        | Description                                        | Default |
+| ------------- | -------------------------------------------------- | ------- |
+| `--env <env>` | Name of the environment to use when running tests. |         |

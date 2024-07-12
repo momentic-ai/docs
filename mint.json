@@ -69,6 +69,7 @@
         "cli/installation",
         "cli/starting-the-app",
         "cli/running-tests",
+        "cli/running-suites",
         "cli/syncing-tests",
         "cli/syncing-environments"
       ]

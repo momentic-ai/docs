@@ -36,16 +36,16 @@ yarn dlx momentic@latest run [options] [tests...]
 ```
 
 </CodeGroup>
-
+ 
 ## Arguments
 
 | Argument | Description                   | Default |
 | -------- | ----------------------------- | ------- |
-| `envs`   | One or more test identifiers. |         |
+| `tests`  | One or more test identifiers. |         |
 
 To use tests stored on your local file system, pass '--local' and specify file paths to Momentic YAML files or folders that exist locally: 'npx momentic run --local momentic/hello-world.yaml'.
 
-To use tests stored remotely on Momentic Cloud, pass '--remote' and specify one or more test paths. A test path is a lowercased version of your test name where spaces are replaced with underscores: 'npx momentic run --remote hello-world'.
+To use tests stored remotely on Momentic Cloud, pass '--remote' and specify one or more test paths. A test path is a lowercased version of your test name where spaces are replaced with dashes: 'npx momentic run --remote hello-world'.
 
 ## Options
 
