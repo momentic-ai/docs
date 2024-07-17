@@ -3,6 +3,12 @@ title: Authenticating
 description: How to authenticate in Momentic tests
 ---
 
+<Warning>
+  Please avoid using Momentic tests to log in using social login. Providers like
+  Google, Facebook, and GitHub may block Momentic's IP addresses if they detect
+  automated login attempts.
+</Warning>
+
 ## No-code approaches
 
 1. Generate a test account with minimal privileges that is only used for Momentic. Then, pass the credentials directly to the Momentic test via an environment. This is the most secure way to authenticate in Momentic tests.
