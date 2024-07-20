@@ -45,6 +45,8 @@ yarn dlx momentic@latest suite run [options] [suites...]
 
 ## Options
 
-| Option        | Description                                         | Default |
-| ------------- | --------------------------------------------------- | ------- |
-| `--env <env>` | Name of the environment to use when running suites. |         |
+| Option                                           | Description                                                                                                                                                                                                                                                                             | Default |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `--env <env>`                                    | Name of the environment to use when running suites.                                                                                                                                                                                                                                     |         |
+| `--url-override <urlOverride>`                   | Fully qualified URL (e.g., https://www.google.com) to start all tests from. Overrides any default starting URL set from the test or environment.                                                                                                                                        |         |
+| `--custom-headers HEADER-1=value HEADER-2=value` | Add or override HTTP headers to be sent on every network request. If this option is provided, you must use `--` to separate the options from the suite names provided (e.g. `npx momentic@latest suite run --custom-headers TEST=true -- my-suite`). |         |
