@@ -60,6 +60,7 @@
         "platform/test-context",
         "platform/fake-data",
         "platform/sms",
+        "platform/email",
         "platform/smart-waiting"
       ]
     },

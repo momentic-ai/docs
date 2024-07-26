@@ -13,66 +13,67 @@ Momentic allows you to send and receive SMS messages in your tests. This feature
 
 ## Usage
 
-SMS support is currently surfaced through the [JavaScript](/steps/javascript) step. There are two main functions you can use to interact with SMS messages:
+SMS support is currently surfaced through the [JavaScript](/steps/javascript) step. Within Momentic's JavaScript sandbox, your code can access a special `sms` object. This object contains the following utility functions:
 
-- `sendSms`: Sends an SMS message to a phone number.
-- `waitForLatestSms`: Retrieves the most recent SMS message sent to your dedicated phone number.
+### Send SMS
 
-The function signature of these functions are as follows:
+The `send` utility function allows you to send an SMS message to a phone number. The phone number provided in the `from` argument must be issued and authorized by Momentic.
 
-```ts
-function sendSms(params: {
-  body: string;
-  to: string;
-  from: string;
-}): Promise<void>;
+<Tabs>
+  <Tab title="Function Signature">
+    ```ts
+    async function send(params: {
+      body: string;
+      to: string;
+      from: string;
+    }): Promise<void>;
+    ```
+  </Tab>
+  <Tab title="Example">
+    ```ts
+    await sms.send({
+      body: "Hello world!",
+      to: "+14151234567",
+      from: "+14159876543"
+    });
+    ```
+  </Tab>
+</Tabs>
 
-function waitForLatestSms(params: {
-  to?: string;
-  from?: string;
-  timeout?: number;
-}): Promise<{ body: string }>;
-```
+### Fetch SMS message
 
-Here's an example of how you can use these functions in your tests:
+The `fetchLatest` utility function retrieves the most recent SMS message sent to your phone number. You can filter messages based on the sender as well as the receipt date. This function will automatically retry until a matching message is found or the timeout is exhausted (if no timeout is provided, the default is 10 seconds).
 
-```js
-// substitute with your own phone numbers
-const fromNumber = "+###########";
-const toNumber = "+###########";
+If multiple new SMS messages are received, only the most recently received message will be returned. To avoid race conditions, we recommend structuring your tests so that only a single SMS flow is active at any given time for each phone number allocated to your organization.
 
-// send sms
-await sendSms({
-  body: "Refer",
-  to: toNumber,
-  from: fromNumber,
-});
+If you do not filter by receipt date, `fetchLatest` can return messages that were received before your test started (i.e. data generated from previous test runs).
 
-const firstMessage = await waitForLatestSms({
-  to: fromNumber,
-  timeout: 5_000,
-});
+`fetchLatest` will throw an error if no matching SMS message is received within the timeout.
 
-// assert on content
-assert(firstMessage && firstMessage.body.includes("Thanks for engaging"));
+<Tabs>
+  <Tab title="Function Signature">
+    ```ts
+    async function fetchLatest(params: {
+      to: string;
+      from?: string;
+      beforeDate?: Date;
+      afterDate?: Date;
+      timeout?: number; // milliseconds
+    }): Promise<{ body: string }>;
+    ```
+  </Tab>
+  <Tab title="Example">
+    ```ts
+    const { body } = await sms.fetchLatest({
+      to: "+14151234567",
+      from: "+14159876543"
+      afterDate: new Date(), // only fetch messages received after this call starts
+      timeout: 30000, // 30 seconds
+    });
+    // use regex to extract link from message body
+    const link = body.match(/https?:\/\/[^\s]+/)[0];
+    return link;
+    ```
+  </Tab>
+</Tabs>
 
-// send confirmation
-await sendSms({
-  body: "1",
-  to: toNumber,
-  from: fromNumber,
-});
-
-// get reply message
-const secondMessage = await waitForLatestSms({
-  to: fromNumber,
-  timeout: 5_000,
-});
-
-assert(secondMessage);
-
-// use regex to extract link from message body
-const link = secondMessage.body.match(/https?:\/\/[^\s]+/)[0];
-
-return link;
-```
