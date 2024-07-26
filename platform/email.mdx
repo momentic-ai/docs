@@ -18,7 +18,7 @@ Email functionality is currently surfaced through the [JavaScript](/steps/javasc
 
 The `fetchLatest` utility function allows you to retrieve the most recent email received in your inbox. Optionally, you can filter for emails sent after a particular date. This can be useful for ensuring that you are not reading stale emails that were received before the test began.
 
-This function will automatically retry until a matching email is found or the timeout is exhausted (if the timeout parameter is omitted, the default is 10 seconds).
+This function will automatically retry until a matching email is found or the timeout is exhausted (if the timeout parameter is omitted, the default is 10 seconds). If no email is received within the timeout, an error is thrown.
 
 If an email is received, the text content of the email will be available in the `text` field of the result. When `trimWhitespace` is true, which is the default behavior, adjacent whitespace characters will be combined to make the text easier to read and parse in future steps. If the email contains HTML content, the raw HTML will be provided in the `html` field.
 
