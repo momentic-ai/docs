@@ -106,6 +106,8 @@
     {
       "group": "Primitive steps",
       "pages": [
+        "steps/element-check",
+        "steps/page-check",
         "steps/click",
         "steps/type",
         "steps/press",
