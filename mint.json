@@ -54,8 +54,8 @@
       "group": "Platform",
       "pages": [
         "platform/locating-elements",
-        "platform/crafting-assertions",
-        "platform/authenticating",
+        "platform/assertions",
+        "platform/authentication",
         "platform/executing-javascript",
         "platform/test-context",
         "platform/fake-data",
