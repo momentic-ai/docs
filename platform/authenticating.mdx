@@ -9,6 +9,14 @@ description: How to authenticate in Momentic tests
   automated login attempts.
 </Warning>
 
+## SSO login
+
+If your website uses SSO for login, input your application’s URL as the starting URL of your browser test. The test performs the required redirections as part of the start up process.
+
+Some SSO providers might detect Momentic's browsers as bots and prevent them from logging in, for example, by adding a reCAPTCHA. If that is your case, consider reaching out to your SSO provider to see if it is possible to turn off bot detection when identifying requests as coming from Momentic (such as for a specific set of credentials or Momentic specific headers) for testing purposes.
+
+An alternative would be to use a non-SSO approach and leverage a regular username and password combination to go through login.
+
 ## No-code approaches
 
 1. Generate a test account with minimal privileges that is only used for Momentic. Then, pass the credentials directly to the Momentic test via an environment. This is the most secure way to authenticate in Momentic tests.

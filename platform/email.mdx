@@ -6,6 +6,7 @@ description: Receive and interact with emails in Momentic tests
 <Info>
 
 **Prerequisite**: Reserve a dedicated inbox name from the Momentic team before proceeding.
+
 </Info>
 
 Momentic supports receiving emails at specially allocated `@usemomentic.com` addresses. This feature is useful for testing email-based authentication (e.g OTPs), notifications, and other features that require opening emails.
@@ -45,6 +46,7 @@ If an email is received, the text content of the email will be available in the 
       html: string | undefined; // if the email has HTML content, this field will contain the raw HTML
     };
     ```
+
   </Tab>
   <Tab title="Example">
     ```ts
@@ -56,6 +58,7 @@ If an email is received, the text content of the email will be available in the 
 
     return msg.text;
     ```
+
   </Tab>
 </Tabs>
 
