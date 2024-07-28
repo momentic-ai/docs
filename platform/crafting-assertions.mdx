@@ -3,9 +3,19 @@ title: Crafting assertions
 description: How to write assertions as conditional statements
 ---
 
+## Basic assertions
+
+[Element check](/steps/element-check) and [Page check](/steps/page-check) are the most basic form of assertions in Momentic. They are used to verify specific elements or the contents of the page.
+
+With [Element check](/steps/element-check), you can check the text content, attributes, or state of an element. Check for the presence of an element, its visibility, or its HTML content. This is useful for verifying the presence of specific elements on the page and whether they're in the expected state. They are powered by our AI locator and are significantly faster than [AI check](/steps/ai-check).
+
+With [Page check](/steps/page-check), you can verify the HTML content of the page. This is useful for checking the presence of specific elements or text on the page.
+
+## AI assertions
+
 [AI checks](/steps/ai-check) are human-understandable assertions powered by AI that can be used to verify arbitrary facts about the current page. They are more powerful and reliable than the `expect` or `assert` statements in traditional testing libraries.
 
-## Content-based assertions
+### Content-based assertions
 
 <Info>
   When using content-based assertions, our AI has access to the **whole page**,
@@ -27,7 +37,7 @@ Content-based assertions are great for analyzing and asserting on tabular data. 
 
 If you are using techniques such as list virtualization where only visible rows are rendered, you will have to use the `Scroll` step to make sure other rows are shown.
 
-## Vision-based assertions
+### Vision-based assertions
 
 <Info>
   Vision limits our AI to the **current visible viewport** as it relies on a
@@ -48,7 +58,7 @@ You can make assertions about **visual** information on the page. It is effectiv
 - Accuracy improves when there are clear labels and axes within the viewport.
 - For interactive visualizations, use [Click](/steps/click) or [Hover](/steps/hover) steps to show tooltips and interact with data visualizations.
 
-## Tips
+### Tips
 
 Avoid language that is unnecessarily specific for your intended use case. For example, asserting that is `the button to submit the form is clickable` is better than asserting `the button labelled 'Submit!' is clickable` since the label may change.
 
