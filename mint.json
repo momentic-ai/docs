@@ -61,7 +61,7 @@
         "platform/fake-data",
         "platform/sms",
         "platform/email",
-        "platform/smart-waiting"
+        "platform/waiting"
       ]
     },
     {
