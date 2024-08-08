@@ -4,37 +4,44 @@ description: Learn how to easily wait for different conditions in Momentic.
 ---
 
 ## Smart waiting
+
 By default, Momentic intelligently waits for the page to stabilize before performing each action. This procedure is called "Smart waiting". Smart waiting is designed to remove the need for users to add explicit sleep commands, which is a common source of flakiness in traditional testing frameworks.
 
 While smart waiting, Momentic will periodically check if performing the next action is possible. For example, while waiting for the page to stabilize for a `CLICK` command, Momentic will periodically check if the element to be clicked is present on the page and proceed if so.
 
 The smart waiting timeout is set to 3 seconds by default and is configurable through each test's AI options. If your application needs more than 3 seconds to respond to user actions (e.g. your backend sometimes takes 5 seconds to respond to a click and update the frontend), you have two options:
+
 - Increase the smart waiting timeout
 - Use an explicit wait (see next section)
 
-
 <Accordion title='Technical details: what defines "stability"'>
-Momentic's definition of stability includes:
-- In-progress navigations completing and any new pages firing the 'load' event
-- The screenshot of the page stops changing
-- Nodes stop being added, removed, and updated in the DOM
+  Momentic's definition of stability includes: - In-progress navigations
+  completing and any new pages firing the 'load' event - The screenshot of the
+  page stops changing - Nodes stop being added, removed, and updated in the DOM
 </Accordion>
 
 ## Explicit waits
+
 Momentic offers different waiting options depending on what condition you wish to wait for.
 
 <CardGroup cols={1}>
   <Card title="URL change (after click action only)">
-    Use the `wait for URL` option of the [Click command](/steps/click) to wait for either the current page or a new tab to navigate to a specified URL.
-    Glob patterns are supported. The maximum timeout for this option is equal to the page load timeout, which is configurable in each test's network options.
+    Use the `wait for URL` option of the [Click command](/steps/click) to wait
+    for either the current page or a new tab to navigate to a specified URL.
+    Glob patterns are supported. The maximum timeout for this option is equal to
+    the page load timeout, which is configurable in each test's network options.
   </Card>
   <Card title="Page content change">
-    Use a [Page check or Element check](/platform/assertions#basic-assertions) action to wait until the page contains some text or element you know should be present once the page is finished loading. Use the timeout option to control the maximum waiting time. This is the recommended way to wait for page loads and navigations that can take more time than the smart waiting timeout.
+    Use a [Page check or Element check](/platform/assertions#basic-assertions)
+    action to wait until the page contains some text or element you know should
+    be present once the page is finished loading. Use the timeout option to
+    control the maximum waiting time. This is the recommended way to wait for
+    page loads and navigations that can take more time than the smart waiting
+    timeout.
   </Card>
   <Card title="Arbitrary condition">
-    Use a [AI assertion](/platform/assertions#ai-assertions) action to wait until Momentic's AI agent determines that your English statement is true. Use the timeout option to control the maximum waiting time.
+    Use a [AI assertion](/platform/assertions#ai-assertions) action to wait
+    until Momentic's AI agent determines that your English statement is true.
+    Use the timeout option to control the maximum waiting time.
   </Card>
 </CardGroup>
-
-
-
