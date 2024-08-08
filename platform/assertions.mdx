@@ -1,65 +1,131 @@
 ---
 title: Assertions
-description: How to leverage different types of assertions in Momentic.
+description: Leverage Momentic's powerful assertions to verify any condition.
 ---
+
+Momentic offers three types of assertions, giving you full control over how to test your application's correctness:
+
+| Category   | Description                                                                                         |
+| ---------- | --------------------------------------------------------------------------------------------------- |
+| Basic      | Run prebuilt checks against a specific element or the entire page content.                          |
+| AI         | Ask Momentic's AI to verify any English statement about the current page.                           |
+| JavaScript | Execute arbitrary JavaScript code with access to the current page, executed results, and libraries. |
 
 ## Basic assertions
 
-[Element check](/steps/element-check) and [Page check](/steps/page-check) are the most basic form of assertions in Momentic. They are used to verify specific elements or the contents of the page.
+Element and page checks are the fastest assertions in Momentic.
 
-With [Element check](/steps/element-check), you can check the text content, attributes, or state of an element. Check for the presence of an element, its visibility, or its HTML content. This is useful for verifying the presence of specific elements on the page and whether they're in the expected state. They are powered by our AI locator and are significantly faster than [AI check](/steps/ai-check).
+With [Element Checks](/steps/element-check), you can check an element's text content, attribute values (e.g. `href`, `value`, `min`), or interactivity status (e.g. `enabled`, `editable`, `visible`).
+Target the element by providing either a CSS selector, or a plain English description for AI auto-healing capabilities.
 
-With [Page check](/steps/page-check), you can verify the HTML content of the page. This is useful for checking the presence of specific elements or text on the page.
+With [Page Checks](/steps/page-check), you can assert that the HTML content of the current page matches a certain condition. This is useful for checking for the presence of specific text on the page.
+
+All basic assertions support a timeout option. If the assertion initially fails, it will be automatically retried up until the timeout elapses. As such, basic assertions can be extremely useful for waiting for page transitions and loading states to complete before proceeding with interactive actions.
 
 ## AI assertions
 
-[AI checks](/steps/ai-check) are human-understandable assertions powered by AI that can be used to verify arbitrary facts about the current page. They are more powerful and reliable than the `expect` or `assert` statements in traditional testing libraries.
-
-### Content-based assertions
-
 <Info>
-  When using content-based assertions, our AI has access to the **whole page**,
-  not just the portion visible in the viewport. This is also significantly
-  faster.
+  Our AI can access HTML content from the **entire page**, not just the portion
+  visible in the current visible area. However, our AI can only access visual
+  information from the current visible area as it relies on a screenshot of the
+  page. You can use [scroll commands](/steps/scroll) to ensure that the relevant
+  content is visible before an assertion.
 </Info>
 
-By default, Momentic’s AI uses a processed accessibility tree and text content of your application to make decisions.
+[AI checks](/steps/ai-check) are English statements verified by Momentic's AI. They are more powerful and reliable than `expect` or `assert` statements from traditional testing libraries.
 
-| Category                      | Example                                                     |
-| ----------------------------- | ----------------------------------------------------------- |
-| Presence (or absence) of text | `Verify the page shows 3 search results`                    |
-| Logical statements            | `The publish date of this article is more than 30 days ago` |
-| General state of page         | `There is no error message present on the page`             |
+Use AI checks to verify complex conditions without having to worry about syntax:
 
-### Tables
+| Category                          | Example                                                   |
+| --------------------------------- | --------------------------------------------------------- |
+| Presence (or absence) of text     | Verify that a congratulations message is on the page      |
+| Presence (or absence) of elements | Verify that the page shows 3 search results               |
+| Logical statements                | The publish date of this article is more than 30 days ago |
+| General state of page             | There is no error message present on the page             |
 
-Content-based assertions are great for analyzing and asserting on tabular data. Our AI can accurately understand data present in a HTML table. You can assert on the content of a table cell, row, or column.
+Your assertion can also reference visual properties. For example:
 
-If you are using techniques such as list virtualization where only visible rows are rendered, you will have to use the `Scroll` step to make sure other rows are shown.
+| Category | Example                                           |
+| -------- | ------------------------------------------------- |
+| Color    | Verify the buy button is blue                     |
+| Layout   | The 'XL' button is the largest button on the page |
+| Imagery  | There is a LinkedIn icon on the page              |
 
-### Vision-based assertions
-
-<Info>
-  Vision limits our AI to the **current visible viewport** as it relies on a
-  screenshot of the page.
-</Info>
-
-You can make assertions about **visual** information on the page. It is effective for assertions that include color, position on the page, or visual information like layout. For example:
-
-| Category                         | Example                                          |
-| -------------------------------- | ------------------------------------------------ |
-| Presence (or absence) of imagery | `Verify the buy button is blue`                  |
-| Logical statements               | `The most expensive item is highest on the list` |
-| General state of page           | `The login page is visible`                      |
+Finally, you can use `{{}}` expressions to inject dynamic content into your assertion. For example: `the current page contains a link to {{ env.BASE_URL }}`. For more information, visit the [Executing JavaScript](/platform/executing-javascript) page.
 
 ### Data visualizations
 
-- We support SVG or canvas based data visualizations rendered by libraries such as D3, Hicharts, Recharts, and more.
-- Accuracy improves when there are clear labels and axes within the viewport.
+Momentic supports high-level assertions about SVG or canvas-based data visualizations rendered by libraries such as D3, Hicharts, Recharts, and more. However, Momentic's AI agents are not designed to perform complex calculations over a large number of data points. For math-intensive operations, we recommend using a [JavaScript step](/steps/javascript).
+
+To improve accuracy for graphical assertions:
+
+- Maximize or expand your graph so that it takes up a majority of the screen. If your charting library does not have this functionality, you can try setting `document.body.style.zoom` manually using a JavaScript step.
+- Provide clear labels and units for all axes. Include grid lines when possible.
 - For interactive visualizations, use [Click](/steps/click) or [Hover](/steps/hover) steps to show tooltips and interact with data visualizations.
 
-### Tips
+### Prompting best practices
 
-Avoid language that is unnecessarily specific for your intended use case. For example, asserting that is `the button to submit the form is clickable` is better than asserting `the button labelled 'Submit!' is clickable` since the label may change.
+Over your first hours building on Momentic, you should develop a good "feel" for how our AI processes your assertion. In general, we recommend treating our AI like a new QA engineer joining your team. By following the best practices below, you should be able to instruct our AI to understand what correctness means on your app:
 
-Similarly, asserting that `there are 3 search results` is better than `there are 3 different results` if the contents of the results doesn't actually matter.
+1. **Keep assertions short and focused on a single topic**.
+
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+       The user is logged in and the user's profile picture is in the top right
+       corner and the table is populated.
+     </Card>
+     <Card icon="check" color="#43A047">
+       The user is logged in.
+     </Card>
+   </CardGroup>
+
+2. **Provide useful context and hints**. To avoid misinterpretations, include information such as a specific part of the page the AI should focus on or the element type you are looking for.
+
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+       Google is visible.
+     </Card>
+     <Card icon="check" color="#43A047">
+       There is a Google logo in the middle of the page.
+     </Card>
+   </CardGroup>
+
+3. **Avoid jargon and narrowly specific language.** AI agents may be confused by non-standard terminology. In addition, descriptions that are too specific may prevent proper auto-healing.
+
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+       The page contains a code-mirror div with the text 'https://google.com'.
+     </Card>
+     <Card icon="check" color="#43A047">
+       The page contains a text input that has a URL in it.
+     </Card>
+   </CardGroup>
+
+### Unsupported assertions
+
+The following types of assertions are currently not supported:
+
+| Category                 | Example                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Assertions with commands | Expand the dropdown and then check that there are five options available.                                                      |
+| Assertions over time     | After 5 seconds, a popup appears.                                                                                              |
+| Subjective assertions    | The page looks great!                                                                                                          |
+| Complex math             | The average slope of the graph is 31.4.                                                                                        |
+| Complex conditionals     | If the user is logged in, check that their profile photo is visible. Otherwise, check that there is a Google icon on the page. |
+
+## JavaScript assertions
+
+You can use the [JavaScript step](/steps/javascript) to execute assertions that require coding features, such as conditionals, loops, math, and regular expressions. Any error thrown from a JavaScript step will automatically fail the test.
+
+To access the page content and DOM functions directly, turn the `execute in browser` option on. Your code will then run in the current page's context. For example, the following code verifies that there is an element on the page with a UUID as its content:
+
+```JavaScript
+const element = document.querySelector("#uuid")
+if (!element) {
+  throw new Error("No title element found")
+}
+const uuidRegex = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/
+if (!element.textContent.match(uuidRegex)) {
+  throw new Error("Element content is not a UUID")
+}
+```
