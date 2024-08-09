@@ -25,11 +25,9 @@ The smart waiting timeout is set to 3 seconds by default and is configurable thr
 Momentic offers different waiting options depending on what condition you wish to wait for.
 
 <CardGroup cols={1}>
-  <Card title="URL change (after click action only)">
-    Use the `wait for URL` option of the [Click command](/steps/click) to wait
-    for either the current page or a new tab to navigate to a specified URL.
-    Glob patterns are supported. The maximum timeout for this option is equal to
-    the page load timeout, which is configurable in each test's network options.
+  <Card title="URL change">
+    Use the [Wait for URL](/steps/wait-for-url) command to wait for either the current page or a new tab to navigate to a specified URL.
+    Glob patterns are supported. The maximum timeout for this option is equal to the page load timeout, which is configurable in each test's network options.
   </Card>
   <Card title="Page content change">
     Use a [Page check or Element check](/platform/assertions#basic-assertions)
