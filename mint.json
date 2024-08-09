@@ -117,6 +117,7 @@
         "steps/select",
         "steps/cookie",
         "steps/wait",
+        "steps/wait-for-url",
         "steps/local-storage",
         "steps/file-upload"
       ]

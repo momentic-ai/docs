@@ -1,0 +1,49 @@
+---
+title: Wait for URL
+description: Wait for the active page to match a URL
+icon: loader
+---
+
+## Inputs
+<ResponseField name="pattern" type="string">
+  Exact URL or glob pattern that the active page URL should match. If new tabs are opened while this command is running, they will be automatically followed and the provided pattern will matched against the new tab URL.
+</ResponseField>
+
+
+<ResponseField name="timeout" type="number">
+  Maximum number of seconds to wait. The step will fail if the page does not transition to a matching URL within the timeout.
+  If no timeout is provided, the timeout will be set to the default page load timeout, which is configurable in the test options dialog.
+</ResponseField>
+
+## Glob pitfalls
+Be aware of the common pitfalls surrounding glob patterns. We recommend testing your pattern with an [online tool](https://www.digitalocean.com/community/tools/glob) to ensure the results match your expectations.
+
+1. `**/*` does not match empty strings. For example, if the current URL is `https://google.com/`:
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+      `https://google.com/**/*` does not match.
+     </Card>
+     <Card icon="check" color="#43A047">
+     `https://**/*` does match.
+     </Card>
+   </CardGroup>
+  
+2. `*` does not match `/` characters. For example, if the current URL is `https://docs.momentic.ai/steps/wait-for-url`:
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+      `https://docs.momentic.ai/steps*` does not match.
+     </Card>
+     <Card icon="check" color="#43A047">
+     `https://docs.momentic.ai/steps/*` does match.
+     </Card>
+   </CardGroup>
+
+3. When placed within a single path segment, `**` does not match recursive paths. For example, if the current URL is `https://momentic.ai/schedule-demo/book`:
+   <CardGroup cols={2}>
+     <Card icon="xmark" color="#D32F2F">
+      `https://momentic.ai/schedule-demo**` does not match.
+     </Card>
+     <Card icon="check" color="#43A047">
+     `https://momentic.ai/schedule-demo/*` does match.
+     </Card>
+   </CardGroup>
